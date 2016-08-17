@@ -1,0 +1,32 @@
+{
+  "name": "koa-Router",
+  "version": "1.0.2",
+  "description": "Yet another router Koa 2, based on express router code",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "EduardoRFS",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EduardoRFS/koa-Router.git"
+  },
+  "bugs": {
+    "url": "https://github.com/EduardoRFS/koa-Router/issues"
+  },
+  "homepage": "https://github.com/EduardoRFS/koa-Router#readme",
+  "dependencies": {
+    "array-flatten": "^2.1.0",
+    "debug": "^2.2.0",
+    "koa-compose": "^2.4.0",
+    "methods": "^1.1.2",
+    "path-to-regexp": "^1.5.3"
+  },
+  "devDependencies": {
+    "eslint": "^3.2.2",
+    "koa": "^2.0.0-alpha.5",
+    "mocha": "^3.0.2",
+    "supertest": "^2.0.0"
+  }
+}
