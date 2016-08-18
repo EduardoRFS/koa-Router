@@ -1,6 +1,6 @@
 {
   "name": "koa-Router",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Yet another router Koa 2, based on express router code",
   "main": "lib/index.js",
   "scripts": {
@@ -19,7 +19,7 @@
   "dependencies": {
     "array-flatten": "^2.1.0",
     "debug": "^2.2.0",
-    "koa-compose": "^2.4.0",
+    "koa-compose": "^3.1.0",
     "methods": "^1.1.2",
     "path-to-regexp": "^1.5.3"
   },

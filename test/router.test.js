@@ -1,4 +1,5 @@
 'use strict';
+/** from https://github.com/inca/koa-router2 */
 const request = require('supertest');
 const Router = require('../lib');
 const Koa = require('koa');
