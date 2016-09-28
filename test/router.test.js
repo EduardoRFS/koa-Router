@@ -112,5 +112,34 @@ describe('Router', function() {
     });
 
   });
+  context('exceptions', function() {
+    const app = new Koa();
+    const router = new Router();
+    const router2 = new Router();
 
+    router2.post('/', ctx => {
+      throw new Error('Multi Magic Error');
+    });
+
+    router.use((ctx, next) => {
+      return next()
+        .catch(err => ctx.body = err.message);
+    });
+    router.use(router2);
+    router.get('/', ctx => {
+      throw new Error('Magic Error');
+    });
+
+    app.use(router);
+    it('catch', done => {
+      request(app.listen())
+        .get('/')
+        .expect('Magic Error', done);
+    });
+    it('multi layer catch', done => {
+      request(app.listen())
+        .post('/')
+        .expect('Multi Magic Error', done);
+    });
+  });
 });
