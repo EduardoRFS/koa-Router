@@ -147,15 +147,11 @@ describe('Router', function() {
     const app = new Koa();
     const router = new Router();
 
-    router.config({
-      test (value) {
-        return typeof value === 'string';
-      },
-      createHandler (value) {
+    router.config(value => {
+      if (typeof value === 'string')
         return function (ctx, next) {
           ctx.body = value;
         };
-      }
     });
 
     router.get('/', 'Magic');
