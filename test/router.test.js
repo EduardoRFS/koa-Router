@@ -142,4 +142,30 @@ describe('Router', function() {
         .expect('Multi Magic Error', done);
     });
   });
+
+  context('custom handler', function() {
+    const app = new Koa();
+    const router = new Router();
+
+    router.config({
+      test (value) {
+        return typeof value === 'string';
+      },
+      createHandler (value) {
+        return function (ctx, next) {
+          ctx.body = value;
+        };
+      }
+    });
+
+    router.get('/', 'Magic');
+
+    app.use(router);
+
+    it('works', done => {
+      request(app.listen())
+        .get('/')
+        .expect('Magic', done);
+    })
+  });
 });
