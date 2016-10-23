@@ -117,7 +117,7 @@ describe('Router', function() {
     const router = new Router();
     const router2 = new Router();
 
-    router2.post('/', ctx => {
+    router2.post('/test', ctx => {
       throw new Error('Multi Magic Error');
     });
 
@@ -126,19 +126,19 @@ describe('Router', function() {
         .catch(err => ctx.body = err.message);
     });
     router.use(router2);
-    router.get('/', ctx => {
+    router.get('/test', ctx => {
       throw new Error('Magic Error');
     });
 
     app.use(router);
     it('catch', done => {
       request(app.listen())
-        .get('/')
+        .get('/test')
         .expect('Magic Error', done);
     });
     it('multi layer catch', done => {
       request(app.listen())
-        .post('/')
+        .post('/test')
         .expect('Multi Magic Error', done);
     });
   });
