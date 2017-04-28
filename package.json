@@ -1,6 +1,6 @@
 {
   "name": "koa-Router",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Yet another router Koa 2, based on express router code",
   "main": "lib/index.js",
   "scripts": {
