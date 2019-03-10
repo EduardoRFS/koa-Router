@@ -1,19 +1,16 @@
-'use strict';
 /** from https://github.com/inca/koa-router2 */
 const request = require('supertest');
-const Router = require('../lib');
 const Koa = require('koa');
+const Router = require('../lib');
 
 describe('Router', function() {
-
   context('methods', function() {
-
     const app = new Koa();
     const router = new Router();
 
-    router.get('/', ctx => ctx.body = 'Hi, get');
-    router.post('/', ctx => ctx.body = 'Hi, post');
-    router.all('/', ctx => ctx.body = 'Hi, everyone');
+    router.get('/', ctx => (ctx.body = 'Hi, get'));
+    router.post('/', ctx => (ctx.body = 'Hi, post'));
+    router.all('/', ctx => (ctx.body = 'Hi, everyone'));
 
     app.use(router);
 
@@ -34,14 +31,13 @@ describe('Router', function() {
         .put('/')
         .expect('Hi, everyone', done);
     });
-
   });
 
   context('paths', function() {
     const app = new Koa();
     const router = new Router();
-    router.get('/', ctx => ctx.body = 'Welcome');
-    router.get('/hello', ctx => ctx.body = 'Hello');
+    router.get('/', ctx => (ctx.body = 'Welcome'));
+    router.get('/hello', ctx => (ctx.body = 'Hello'));
 
     app.use(router);
     it('matches /', done => {
@@ -61,14 +57,13 @@ describe('Router', function() {
         .get('/smth')
         .expect(404, done);
     });
-
   });
 
   context('params', function() {
     const app = new Koa();
     const router = new Router();
-    router.get('/hi/:name', ctx => ctx.body = 'Hi, ' + ctx.params.name);
-    router.get('/file/*', ctx => ctx.body = ctx.params[0]);
+    router.get('/hi/:name', ctx => (ctx.body = `Hi, ${ctx.params.name}`));
+    router.get('/file/*', ctx => (ctx.body = ctx.params[0]));
 
     app.use(router);
     it('captures named parameters', done => {
@@ -82,7 +77,6 @@ describe('Router', function() {
         .get('/file/foo/bar/baz')
         .expect('foo/bar/baz', done);
     });
-
   });
 
   context('middleware', function() {
@@ -110,7 +104,6 @@ describe('Router', function() {
         .get('/')
         .expect('1234', done);
     });
-
   });
   context('exceptions', function() {
     const app = new Koa();
@@ -122,8 +115,7 @@ describe('Router', function() {
     });
 
     router.use((ctx, next) => {
-      return next()
-        .catch(err => ctx.body = err.message);
+      return next().catch(err => (ctx.body = err.message));
     });
     router.use(router2);
     router.get('/', ctx => {
@@ -149,7 +141,7 @@ describe('Router', function() {
 
     router.config(value => {
       if (typeof value === 'string')
-        return function (ctx, next) {
+        return function(ctx, next) {
           ctx.body = value;
         };
     });
@@ -162,6 +154,6 @@ describe('Router', function() {
       request(app.listen())
         .get('/')
         .expect('Magic', done);
-    })
+    });
   });
 });
