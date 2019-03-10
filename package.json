@@ -4,7 +4,7 @@
   "description": "Yet another router Koa 2, based on express router code",
   "main": "lib/index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "jest"
   },
   "author": "EduardoRFS",
   "license": "MIT",
@@ -29,9 +29,10 @@
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-config-prettier": "^4.1.0",
     "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-jest": "^22.3.0",
     "eslint-plugin-prettier": "^3.0.1",
-    "koa": "^2.0.0-alpha.5",
-    "mocha": "^3.0.2",
+    "jest": "^24.3.1",
+    "koa": "^2.7.0",
     "prettier": "^1.16.4",
     "supertest": "^2.0.0"
   }
